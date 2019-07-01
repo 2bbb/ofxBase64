@@ -12,13 +12,13 @@
 #include "Poco/Base64Encoder.h"
 #include "ofMain.h"
 
-void ofxBase64Decode(const string &base64String, ofBuffer &output) {
-    stringstream ss(base64String);
+inline static void ofxBase64Decode(const string &base64String, ofBuffer &output) {
+    std::stringstream ss(base64String);
     Poco::Base64Decoder base64decoder(ss);
     base64decoder >> output;
 }
 
-void ofxBase64Encode(string &base64String, const ofBuffer &input) {
+inline static void ofxBase64Encode(string &base64String, const ofBuffer &input) {
     std::ostringstream str;
     Poco::Base64Encoder encoder(str);
     encoder.write(input.getBinaryBuffer(), input.size());
